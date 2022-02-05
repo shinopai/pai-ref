@@ -26,50 +26,6 @@
 
 <body class="bg-gray-200">
     <div id="app" class="w-full lg:w-5/6 lg:mx-auto">
-        <nav class=" flex px-5 py-4 bg-gray-500 justify-between">
-
-            <!-- left side -->
-            <div class="flex items-center space-x-3 text-xl text-white font-bold">
-                <span class="material-icons">
-                    photo_camera
-                </span>
-                <h1>{{ config('app.name', 'Laravel') }}</h1>
-            </div>
-
-            <!-- right side -->
-            <div class="flex items-center text-sm text-gray-300">
-                <span>こんにちは、
-                    @guest
-                    ゲストさん
-                    @else
-                    ユーザーさん
-                    @endguest
-                </span>&nbsp;|&nbsp;
-                <a href="#" class="block">ヘルプ</a>
-            </div>
-        </nav>
-
-        <nav class="bg-gray-700 pl-4">
-            <div class="flex items-center justify-between">
-
-                <div class="flex items-center text-gray-300">
-                    <div>
-                        <a href="#" class="border-r px-2 hover:bg-gray-500 hover:text-white">ホーム</a>
-                        <a href="#" class="border-r px-2 hover:bg-gray-500 hover:text-white">写真</a>
-                        <a href="#" class="border-r px-2 hover:bg-gray-500 hover:text-white">投稿記事</a>
-                        <a href="#" class="border-r px-2 hover:bg-gray-500 hover:text-white">コンテスト</a>
-                        <a href="#" class="border-r px-2 hover:bg-gray-500 hover:text-white">ギャラリー</a>
-                        <a href="#" class="px-2 hover:bg-gray-500 hover:text-white">メンバー</a>
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <a href="#" class="bg-yellow-500 p-2 hover:bg-yellow-300">プレミアム</a>
-                    <a href="{{ route('login') }}" class="bg-blue-500 text-white p-2 hover:bg-blue-300">ログイン</a>
-                </div>
-
-            </div>
-        </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

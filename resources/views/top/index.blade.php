@@ -4,7 +4,13 @@
 写真投稿 & 写真共有サイト | PaiRef
 @endsection
 
+@include('layouts.partial.header')
+
 @section('content')
+@if (session('flash'))
+<p class="bg-green-500 text-center text-white p-2">{{ session('flash') }}</p>
+@endif
+
 <div class="flex flex-wrap justify-center items-start">
     <!-- back to top button -->
     <span id="back-btn" class="material-icons fixed right-32 bottom-5 bg-gray-700 text-white p-2 rounded-full cursor-pointer hidden">
@@ -36,7 +42,7 @@
                     <ul class="divide-y divide-gray-300">
                         <li class="p-4 pl-0 hover:bg-gray-50 cursor-pointer"><span class="material-icons" style="vertical-align: -6px;">
                                 image
-                            </span>新着写真を見る</li>
+                            </span><a href="{{ route('photos.showSearch') }}">新着写真を見る</a></li>
                         <li class="p-4 pl-0 hover:bg-gray-50 cursor-pointer"><span class="material-icons" style="vertical-align: -6px;">
                                 image
                             </span>人気写真を見る</li>
@@ -277,8 +283,13 @@
     <!-- right side -->
     <div class="item w-1/3 h-auto">
         <div class="bg-white p-2 ml-2">
+            @guest
             <p>PaiRefにメンバー登録して、写真好きのメンバーとの交流や、フォトコンテストへチャレンジしよう！</p>
             <a href="{{ route('register') }}" class="bg-indigo-500 text-white p-2 rounded font-bold inline-block mt-3 w-full text-center hover:underline">利用登録する</a>
+            @else
+            <p>自分のお気に入りの一枚を投稿して、他のユーザーと共有しよう！！</p>
+            <a href="{{ route('users.photos.create', ['user' => Auth::user()->name]) }}" class="bg-indigo-500 text-white p-2 rounded font-bold inline-block mt-3 w-full text-center hover:underline">投稿する</a>
+            @endguest
         </div>
         <div class="mt-5 p-2 bg-white ml-2">
             <h3 class="bg-gray-200 text-lg font-bold w-full p-2">サイト内検索</h3>

@@ -8,6 +8,10 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class RegisterController extends Controller
 {
@@ -29,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -53,7 +57,27 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'profile_image' => ['image']
         ]);
+    }
+
+    /**
+     * save profile image
+    */
+    private function saveImage(UploadedFile $file): string
+    {
+        $tempPath = $this->makeTempPath();
+        Image::make($file)->fit(200, 200)->save($tempPath);
+        $filePath = Storage::disk('public')
+            ->putFile('images', new File($tempPath));
+        return basename($filePath);
+    }
+
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
     }
 
     /**
@@ -64,10 +88,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $imageName = $this->saveImage($data['profile_image']);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'profile_image' => $imageName
         ]);
     }
 }

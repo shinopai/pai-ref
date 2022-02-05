@@ -1,77 +1,54 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<nav class=" flex px-5 py-4 bg-gray-500 justify-between w-5/6 mx-auto">
+    <div class="flex items-center space-x-3 text-xl text-white font-bold">
+        <span class="material-icons">
+            photo_camera
+        </span>
+        <h1><a href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a></h1>
     </div>
-</div>
+</nav>
+
+@section('content')
+<section class="flex justify-center items-center bg-gray-200 mt-10">
+    <div class="w-2/3 bg-white rounded p-6 space-y-4">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" novalidate>
+            @csrf
+            <div>
+                <input type="text" name="name" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" placeholder="名前">
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-red-500">{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div>
+                <input type="email" name="email" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" placeholder="メールアドレス">
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-red-500">{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div>
+                <input type="password" name="password" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" placeholder="パスワード">
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="text-red-500">{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div>
+                <input type="password" name="password_confirmation" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" placeholder="パスワード(確認)">
+            </div>
+            <div class="mt-5">
+                <label for="profile_image">プロフィール画像</label>
+                <input type="file" name="profile_image" class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600" id="profile_image">
+            </div>
+            <div>
+                <button class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200 mt-5">登録</button>
+            </div>
+        </form>
+    </div>
+</section>
 @endsection
