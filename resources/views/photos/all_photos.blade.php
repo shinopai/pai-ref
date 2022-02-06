@@ -75,9 +75,11 @@
             {{ $photos->links('vendor.pagination.default') }}
             <div class="grid-cols-3 p-10 space-y-2 bg-white lg:space-y-0 lg:grid lg:gap-3 lg:grid-rows-3">
                 @foreach ($photos as $photo)
-                <div class="w-full rounded">
-                    <img src="{{ url('static/post_images/'.$photo->image_path) }}" alt="{{ $photo->title }}">
-                </div>
+                <a href="{{ route('users.showDetail', ['user' => $photo->user->name, 'photo' => $photo->id]) }}">
+                    <div class="w-full rounded">
+                        <img src="{{ url('static/post_images/'.$photo->image_path) }}" alt="{{ $photo->title }}">
+                    </div>
+                </a>
                 @endforeach
             </div>
             {{ $photos->links('vendor.pagination.default') }}

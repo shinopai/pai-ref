@@ -1,6 +1,6 @@
-// back to top button
 window.addEventListener('DOMContentLoaded', function () {
     $(function () {
+        // back to top button
         var backBtn = $('#back-btn');
         //スクロールが500に達したらボタン表示
         $(window).scroll(function () {
@@ -19,4 +19,7 @@ window.addEventListener('DOMContentLoaded', function () {
             return false;
         });
     });
+
+    // flash message fadeout
+    $('#flash').fadeOut(3500);
 });

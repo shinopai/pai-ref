@@ -71,9 +71,11 @@
             <h2 class="bg-gray-200 text-xl font-bold w-full p-2">新着写真(50件)</h2>
             <div class="grid-cols-3 p-10 space-y-2 bg-white lg:space-y-0 lg:grid lg:gap-3 lg:grid-rows-3">
                 @foreach ($photos as $photo)
-                <div class="w-full rounded">
-                    <img src="{{ url('static/post_images/'.$photo->image_path) }}" alt="{{ $photo->title }}">
-                </div>
+                <a href="{{ route('users.showDetail', ['user' => $photo->user->name, 'photo' => $photo->id]) }}">
+                    <div class="w-full rounded">
+                        <img src="{{ url('static/post_images/'.$photo->image_path) }}" alt="{{ $photo->title }}">
+                    </div>
+                </a>
                 @endforeach
             </div>
             <a href="{{ route('photos.showAll') }}">
@@ -91,7 +93,7 @@
             <p>PaiRefにメンバー登録して、写真好きのメンバーとの交流や、フォトコンテストへチャレンジしよう！</p>
             <a href="{{ route('register') }}" class="bg-indigo-500 text-white p-2 rounded font-bold inline-block mt-3 w-full text-center hover:underline">利用登録する</a>
             @else
-            <p>自分のお気に入りの一枚を投稿して、他のユーザーと共有しよう！！</p>
+            <p>自分のお気に入りの一枚を投稿して、他のユーザーと共有しよう!!</p>
             <a href="{{ route('users.photos.create', ['user' => Auth::user()->name]) }}" class="bg-indigo-500 text-white p-2 rounded font-bold inline-block mt-3 w-full text-center hover:underline">投稿する</a>
             @endguest
         </div>

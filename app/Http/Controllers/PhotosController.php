@@ -50,6 +50,7 @@ class PhotosController extends Controller
 
     public function showSearch(){
         $photos = Photo::orderBy('id', 'desc')->limit(50)->get();
+        $photos->load('user');
         $categories = Category::all();
         $categories->load('photos');
         $locations = Location::all();
@@ -63,6 +64,7 @@ class PhotosController extends Controller
 
     public function showAll(){
         $photos = Photo::orderBy('id', 'desc')->paginate(100);
+        $photos->load('user');
         $categories = Category::all();
         $categories->load('photos');
         $locations = Location::all();
@@ -103,7 +105,7 @@ class PhotosController extends Controller
             $search_keyword = $request->input('keyword');
         }
 
-        $photos = $query->paginate(50);
+        $photos = $query->paginate(100);
 
         return view('photos.search_result')->with([
             'photos' => $photos,

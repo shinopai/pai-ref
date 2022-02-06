@@ -140,6 +140,7 @@ return [
         'profile_image' => 'プロフィール画像',
         'title' => '写真タイトル',
         'image_path' => '写真',
-        'caption' => '写真説明'
+        'caption' => '写真説明',
+        'body' => '内容'
     ],
 ];

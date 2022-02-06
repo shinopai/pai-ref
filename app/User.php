@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function photos(){
         return $this->hasMany('App\Photo');
     }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

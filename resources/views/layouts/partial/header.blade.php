@@ -39,11 +39,11 @@
             @guest
             <a href="{{ route('login') }}" class="bg-blue-500 text-white p-2 hover:bg-blue-300">ログイン</a>
             @else
-            <a href="#" class="bg-green-500 text-white p-2 hover:bg-green-300">マイページ</a>
+            <a href="{{ route('users.showProfile', ['user' => Auth::user()->name]) }}" class="bg-green-500 text-white p-2 hover:bg-green-300">マイページ</a>
             <form action="{{ route('logout') }}" method="POST" id="logout-form">
                 @csrf
             </form>
-            <a href="#" class="bg-blue-500 text-white p-2 hover:bg-blue-300" onclick="event.preventDefault(); document.getElementById('logout-form')">ログアウト</a>
+            <a href="#" class="bg-blue-500 text-white p-2 hover:bg-blue-300" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
             @endguest
         </div>
 
