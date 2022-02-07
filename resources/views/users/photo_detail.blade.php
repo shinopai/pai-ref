@@ -43,12 +43,7 @@
                         </p>
                     </div>
                     <div class="px-6 py-4">
-                        <span class="inline-block px-3 py-1 text-sm font-semibold text-blue-700 mr-2 border">
-                            <span class="material-icons" style="vertical-align: -6px;">
-                                star
-                            </span>
-                            お気に入り登録 | 0
-                        </span>
+                        <div id="pai-app"></div>
                     </div>
                 </div>
             </div>
@@ -166,6 +161,7 @@
 
 <script async src="https://cse.google.com/cse.js?cx=bfc6fae1ddca596aa"></script>
 <script src="{{ asset('modules/index.js') }}"></script>
+<script src="{{ asset('vue/vue.js') }}"></script>
 
 <script>
     'use strict';

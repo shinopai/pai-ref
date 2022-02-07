@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePhotoUserTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePhotoUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('photo_user', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('photo_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('photo_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -32,6 +32,6 @@ class CreatePhotoUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photo_user');
+        Schema::dropIfExists('likes');
     }
 }

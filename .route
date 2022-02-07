@@ -1,0 +1,87 @@
++--------+-----------+------------------------------------------------+--------------------------------+------------------------------------------------------------------------+------------+
+| Domain | Method    | URI                                            | Name                           | Action                                                                 | Middleware |
++--------+-----------+------------------------------------------------+--------------------------------+------------------------------------------------------------------------+------------+
+|        | GET|HEAD  | /                                              | top.index                      | App\Http\Controllers\TopController@index                               | web        |
+|        | GET|HEAD  | admin                                          | admin.home                     | App\Admin\Controllers\HomeController@index                             | web,admin  |
+|        | POST      | admin/_handle_action_                          | admin.handle-action            | Encore\Admin\Controllers\HandleController@handleAction                 | web,admin  |
+|        | POST      | admin/_handle_form_                            | admin.handle-form              | Encore\Admin\Controllers\HandleController@handleForm                   | web,admin  |
+|        | GET|HEAD  | admin/_handle_renderable_                      | admin.handle-renderable        | Encore\Admin\Controllers\HandleController@handleRenderable             | web,admin  |
+|        | GET|HEAD  | admin/_handle_selectable_                      | admin.handle-selectable        | Encore\Admin\Controllers\HandleController@handleSelectable             | web,admin  |
+|        | POST      | admin/auth/login                               |                                | App\Admin\Controllers\AuthController@postLogin                         | web,admin  |
+|        | GET|HEAD  | admin/auth/login                               | admin.login                    | App\Admin\Controllers\AuthController@getLogin                          | web,admin  |
+|        | GET|HEAD  | admin/auth/logout                              | admin.logout                   | App\Admin\Controllers\AuthController@getLogout                         | web,admin  |
+|        | GET|HEAD  | admin/auth/logs                                | admin.auth.logs.index          | Encore\Admin\Controllers\LogController@index                           | web,admin  |
+|        | DELETE    | admin/auth/logs/{log}                          | admin.auth.logs.destroy        | Encore\Admin\Controllers\LogController@destroy                         | web,admin  |
+|        | POST      | admin/auth/menu                                | admin.auth.menu.store          | Encore\Admin\Controllers\MenuController@store                          | web,admin  |
+|        | GET|HEAD  | admin/auth/menu                                | admin.auth.menu.index          | Encore\Admin\Controllers\MenuController@index                          | web,admin  |
+|        | DELETE    | admin/auth/menu/{menu}                         | admin.auth.menu.destroy        | Encore\Admin\Controllers\MenuController@destroy                        | web,admin  |
+|        | PUT|PATCH | admin/auth/menu/{menu}                         | admin.auth.menu.update         | Encore\Admin\Controllers\MenuController@update                         | web,admin  |
+|        | GET|HEAD  | admin/auth/menu/{menu}                         | admin.auth.menu.show           | Encore\Admin\Controllers\MenuController@show                           | web,admin  |
+|        | GET|HEAD  | admin/auth/menu/{menu}/edit                    | admin.auth.menu.edit           | Encore\Admin\Controllers\MenuController@edit                           | web,admin  |
+|        | GET|HEAD  | admin/auth/permissions                         | admin.auth.permissions.index   | Encore\Admin\Controllers\PermissionController@index                    | web,admin  |
+|        | POST      | admin/auth/permissions                         | admin.auth.permissions.store   | Encore\Admin\Controllers\PermissionController@store                    | web,admin  |
+|        | GET|HEAD  | admin/auth/permissions/create                  | admin.auth.permissions.create  | Encore\Admin\Controllers\PermissionController@create                   | web,admin  |
+|        | DELETE    | admin/auth/permissions/{permission}            | admin.auth.permissions.destroy | Encore\Admin\Controllers\PermissionController@destroy                  | web,admin  |
+|        | GET|HEAD  | admin/auth/permissions/{permission}            | admin.auth.permissions.show    | Encore\Admin\Controllers\PermissionController@show                     | web,admin  |
+|        | PUT|PATCH | admin/auth/permissions/{permission}            | admin.auth.permissions.update  | Encore\Admin\Controllers\PermissionController@update                   | web,admin  |
+|        | GET|HEAD  | admin/auth/permissions/{permission}/edit       | admin.auth.permissions.edit    | Encore\Admin\Controllers\PermissionController@edit                     | web,admin  |
+|        | POST      | admin/auth/roles                               | admin.auth.roles.store         | Encore\Admin\Controllers\RoleController@store                          | web,admin  |
+|        | GET|HEAD  | admin/auth/roles                               | admin.auth.roles.index         | Encore\Admin\Controllers\RoleController@index                          | web,admin  |
+|        | GET|HEAD  | admin/auth/roles/create                        | admin.auth.roles.create        | Encore\Admin\Controllers\RoleController@create                         | web,admin  |
+|        | DELETE    | admin/auth/roles/{role}                        | admin.auth.roles.destroy       | Encore\Admin\Controllers\RoleController@destroy                        | web,admin  |
+|        | PUT|PATCH | admin/auth/roles/{role}                        | admin.auth.roles.update        | Encore\Admin\Controllers\RoleController@update                         | web,admin  |
+|        | GET|HEAD  | admin/auth/roles/{role}                        | admin.auth.roles.show          | Encore\Admin\Controllers\RoleController@show                           | web,admin  |
+|        | GET|HEAD  | admin/auth/roles/{role}/edit                   | admin.auth.roles.edit          | Encore\Admin\Controllers\RoleController@edit                           | web,admin  |
+|        | GET|HEAD  | admin/auth/setting                             | admin.setting                  | App\Admin\Controllers\AuthController@getSetting                        | web,admin  |
+|        | PUT       | admin/auth/setting                             |                                | App\Admin\Controllers\AuthController@putSetting                        | web,admin  |
+|        | POST      | admin/auth/users                               | admin.auth.users.store         | Encore\Admin\Controllers\UserController@store                          | web,admin  |
+|        | GET|HEAD  | admin/auth/users                               | admin.auth.users.index         | Encore\Admin\Controllers\UserController@index                          | web,admin  |
+|        | GET|HEAD  | admin/auth/users/create                        | admin.auth.users.create        | Encore\Admin\Controllers\UserController@create                         | web,admin  |
+|        | GET|HEAD  | admin/auth/users/{user}                        | admin.auth.users.show          | Encore\Admin\Controllers\UserController@show                           | web,admin  |
+|        | PUT|PATCH | admin/auth/users/{user}                        | admin.auth.users.update        | Encore\Admin\Controllers\UserController@update                         | web,admin  |
+|        | DELETE    | admin/auth/users/{user}                        | admin.auth.users.destroy       | Encore\Admin\Controllers\UserController@destroy                        | web,admin  |
+|        | GET|HEAD  | admin/auth/users/{user}/edit                   | admin.auth.users.edit          | Encore\Admin\Controllers\UserController@edit                           | web,admin  |
+|        | POST      | admin/categories                               | admin.categories.store         | App\Admin\Controllers\CategoriesController@store                       | web,admin  |
+|        | GET|HEAD  | admin/categories                               | admin.categories.index         | App\Admin\Controllers\CategoriesController@index                       | web,admin  |
+|        | GET|HEAD  | admin/categories/create                        | admin.categories.create        | App\Admin\Controllers\CategoriesController@create                      | web,admin  |
+|        | GET|HEAD  | admin/categories/{category}                    | admin.categories.show          | App\Admin\Controllers\CategoriesController@show                        | web,admin  |
+|        | PUT|PATCH | admin/categories/{category}                    | admin.categories.update        | App\Admin\Controllers\CategoriesController@update                      | web,admin  |
+|        | DELETE    | admin/categories/{category}                    | admin.categories.destroy       | App\Admin\Controllers\CategoriesController@destroy                     | web,admin  |
+|        | GET|HEAD  | admin/categories/{category}/edit               | admin.categories.edit          | App\Admin\Controllers\CategoriesController@edit                        | web,admin  |
+|        | GET|HEAD  | admin/locations                                | admin.locations.index          | App\Admin\Controllers\LocationsController@index                        | web,admin  |
+|        | POST      | admin/locations                                | admin.locations.store          | App\Admin\Controllers\LocationsController@store                        | web,admin  |
+|        | GET|HEAD  | admin/locations/create                         | admin.locations.create         | App\Admin\Controllers\LocationsController@create                       | web,admin  |
+|        | DELETE    | admin/locations/{location}                     | admin.locations.destroy        | App\Admin\Controllers\LocationsController@destroy                      | web,admin  |
+|        | PUT|PATCH | admin/locations/{location}                     | admin.locations.update         | App\Admin\Controllers\LocationsController@update                       | web,admin  |
+|        | GET|HEAD  | admin/locations/{location}                     | admin.locations.show           | App\Admin\Controllers\LocationsController@show                         | web,admin  |
+|        | GET|HEAD  | admin/locations/{location}/edit                | admin.locations.edit           | App\Admin\Controllers\LocationsController@edit                         | web,admin  |
+|        | GET|HEAD  | all_photos                                     | photos.showAll                 | App\Http\Controllers\PhotosController@showAll                          | web        |
+|        | GET|HEAD  | api/photos/{photo}/likes                       |                                | App\Http\Controllers\Api\LikesController@getAllLikes                   | web        |
+|        | GET|HEAD  | api/user                                       |                                | Closure                                                                | web        |
+|        | GET|HEAD  | login                                          | login                          | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest  |
+|        | POST      | login                                          |                                | App\Http\Controllers\Auth\LoginController@login                        | web,guest  |
+|        | POST      | logout                                         | logout                         | App\Http\Controllers\Auth\LoginController@logout                       | web        |
+|        | POST      | password/confirm                               |                                | App\Http\Controllers\Auth\ConfirmPasswordController@confirm            | web,auth   |
+|        | GET|HEAD  | password/confirm                               | password.confirm               | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm    | web,auth   |
+|        | POST      | password/email                                 | password.email                 | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web        |
+|        | POST      | password/reset                                 | password.update                | App\Http\Controllers\Auth\ResetPasswordController@reset                | web        |
+|        | GET|HEAD  | password/reset                                 | password.request               | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web        |
+|        | GET|HEAD  | password/reset/{token}                         | password.reset                 | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web        |
+|        | GET|HEAD  | profile/{user}                                 | users.showProfile              | App\Http\Controllers\UsersController@showProfile                       | web        |
+|        | GET|HEAD  | profile/{user}/all_photos                      | users.showAll                  | App\Http\Controllers\UsersController@showAll                           | web        |
+|        | GET|HEAD  | profile/{user}/photo/{photo}                   | users.showDetail               | App\Http\Controllers\UsersController@showDetail                        | web        |
+|        | POST      | register                                       |                                | App\Http\Controllers\Auth\RegisterController@register                  | web,guest  |
+|        | GET|HEAD  | register                                       | register                       | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest  |
+|        | GET|HEAD  | search                                         | photos.showSearch              | App\Http\Controllers\PhotosController@showSearch                       | web        |
+|        | GET|HEAD  | search/category/{category}                     | photos.getPhotosEachCategory   | App\Http\Controllers\PhotosController@getPhotosEachCategory            | web        |
+|        | GET|HEAD  | search_result                                  | photos.getSearchResult         | App\Http\Controllers\PhotosController@getSearchResult                  | web        |
+|        | GET|HEAD  | users/{user}/photos                            | users.photos.index             | App\Http\Controllers\PhotosController@index                            | web        |
+|        | POST      | users/{user}/photos                            | users.photos.store             | App\Http\Controllers\PhotosController@store                            | web        |
+|        | GET|HEAD  | users/{user}/photos/create                     | users.photos.create            | App\Http\Controllers\PhotosController@create                           | web,auth   |
+|        | DELETE    | users/{user}/photos/{photo}                    | users.photos.destroy           | App\Http\Controllers\PhotosController@destroy                          | web        |
+|        | PUT|PATCH | users/{user}/photos/{photo}                    | users.photos.update            | App\Http\Controllers\PhotosController@update                           | web        |
+|        | GET|HEAD  | users/{user}/photos/{photo}                    | users.photos.show              | App\Http\Controllers\PhotosController@show                             | web        |
+|        | POST      | users/{user}/photos/{photo}/comments           | users.photos.comments.store    | App\Http\Controllers\CommentsController@store                          | web        |
+|        | DELETE    | users/{user}/photos/{photo}/comments/{comment} | users.photos.comments.destroy  | App\Http\Controllers\CommentsController@destroy                        | web        |
+|        | GET|HEAD  | users/{user}/photos/{photo}/edit               | users.photos.edit              | App\Http\Controllers\PhotosController@edit                             | web        |
++--------+-----------+------------------------------------------------+--------------------------------+------------------------------------------------------------------------+------------+

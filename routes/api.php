@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// get current user name
+Route::get('/user', function (Request $request) {
+    return Auth::user()->name;
 });
+
+// get number of like each photo
+Route::get('photos/{photo}/likes', 'Api\LikesController@getAllLikes');
+
+// like photo
+Route::post('users/{user}/photos/{photo}/like_photo', 'Api\LikesController@likePhoto');
+
+// unlike photo
+Route::post('users/{user}/photos/{photo}/unlike_photo', 'Api\LikesController@unlikePhoto');
+
+// check if user likes this photo
+Route::get('users/{user}/photos/{photo}/check_is_liked', 'Api\LikesController@checkIsLiked');
