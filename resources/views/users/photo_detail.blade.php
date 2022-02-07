@@ -5,6 +5,7 @@
 @endsection
 
 @include('layouts.partial.header')
+@if($user->id == Auth::id())
 <!-- profile page header -->
 <nav class="pl-4 w-5/6 mx-auto" style="background-color: #75AB3C;">
     <div class="flex items-center justify-between">
@@ -19,6 +20,7 @@
         </div>
     </div>
 </nav>
+@endif
 
 @section('content')
 <div class="flex flex-wrap justify-center items-start">

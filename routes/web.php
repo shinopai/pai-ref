@@ -26,6 +26,9 @@ Route::get('/profile/{user}', 'UsersController@showProfile')->name('users.showPr
 // all photos each user
 Route::get('/profile/{user}/all_photos', 'UsersController@showAll')->name('users.showAll');
 
+// all liked photos each user
+Route::get('/profile/{user}/likes/all_photos', 'UsersController@showAllPhotosLikes')->name('users.showAllPhotosLikes');
+
 // photo detail page
 Route::get('/profile/{user}/photo/{photo}', 'UsersController@showDetail')->name('users.showDetail');
 

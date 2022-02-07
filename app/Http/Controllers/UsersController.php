@@ -8,6 +8,7 @@ use App\Photo;
 use App\Category;
 use App\Location;
 use App\Comment;
+use App\Like;
 
 class UsersController extends Controller
 {
@@ -34,6 +35,16 @@ class UsersController extends Controller
             'photo' => $photo,
             'user' => $user,
             'comments' => $comments
+        ]);
+    }
+
+    public function showAllPhotosLikes(User $user){
+        $liked_photo_ids = Like::where('user_id', $user->id)->pluck('photo_id');
+        $photos = Photo::whereIn('id', $liked_photo_ids)->orderBy('created_at', 'desc')->paginate(100);
+
+        return view('users.liked_photos')->with([
+            'photos' => $photos,
+            'user' => $user
         ]);
     }
 }

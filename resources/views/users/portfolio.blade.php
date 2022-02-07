@@ -12,7 +12,7 @@
         <div class="flex items-center text-white">
             <div>
                 <a href="{{ route('users.showAll', ['user' => $user->name]) }}" class="border-r px-2 hover:bg-yellow-500 hover:text-white">ポートフォリオ</a>
-                <a href="{{ route('photos.showSearch') }}" class="border-r px-2 hover:bg-yellow-500 hover:text-white">お気に入り</a>
+                <a href="{{ route('users.showAllPhotosLikes', ['user' => $user->name]) }}" class="border-r px-2 hover:bg-yellow-500 hover:text-white">お気に入り</a>
                 <a href="#" class="border-r px-2 hover:bg-yellow-500 hover:text-white">ファン</a>
                 <a href="{{ route('users.showProfile', ['user' => $user->name]) }}" class="border-r px-2 hover:bg-yellow-500 hover:text-white">プロフィール</a>
             </div>

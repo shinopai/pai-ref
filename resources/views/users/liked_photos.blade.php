@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $user->name }}さんのプロフィール | PaiRef
+{{ $user->name }}さんのお気に入り写真 | PaiRef
 @endsection
 
 @include('layouts.partial.header')
@@ -21,10 +21,6 @@
 </nav>
 
 @section('content')
-@if (session('flash'))
-<p class="bg-green-500 text-center text-white p-2">{{ session('flash') }}</p>
-@endif
-
 <div class="flex flex-wrap justify-center items-start">
     <!-- back to top button -->
     <span id="back-btn" class="material-icons fixed right-32 bottom-5 bg-gray-700 text-white p-2 rounded-full cursor-pointer hidden">
@@ -33,37 +29,23 @@
 
     <!-- left side -->
     <div class="item w-2/3 h-auto">
-        <!-- user profile -->
-        <div class="bg-white p-2" style="height: 500px;">
-            <h2 class="bg-blue-200 text-xl font-bold w-full p-2">
-                {{ $user->name }}さんのプロフィール
-            </h2>
-            <table class="border-separate border border-slate-400 w-full mt-5">
-                <thead>
-                    <tr>
-                        <th class="border border-slate-300 ...">プロフィール情報</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="border border-slate-300 ...">名前</th>
-                        <td class="border border-slate-300 ...">{{ $user->name }}</td>
-                    </tr>
-                    <tr>
-                        <th class="border border-slate-300 ...">メールアドレス</th>
-                        <td class="border border-slate-300 ...">{{ $user->email }}</td>
-                    </tr>
-                    <tr>
-                        <th class="border border-slate-300 ...">プロフィール画像</th>
-                        <td class="border border-slate-300 ...">
-                            @if ($user->profile_image != 'user.jpg')
-                            <img src="{{ asset('storage/images/'.$user->profile_image) }}" alt="{{ $user->name }}" width="100" height="100"></td>
-                        @else
-                        <img src="{{ asset('profiles/user.jpg') }}" alt="{{ $user->name }}" width="100" height="100"></td>
-                        @endif
-                    </tr>
-                </tbody>
-            </table>
+        <!-- all photos -->
+        <div class="container mx-auto mt-5 bg-white py-5 px-2">
+            <h2 class="bg-gray-200 text-xl font-bold w-full p-2">{{ $user->name }}さんのお気に入り写真</h2>
+            <p class="mt-3">全{{ $photos->total() }}件中
+                {{  ($photos->currentPage() -1) * $photos->perPage() + 1}} -
+                {{ (($photos->currentPage() -1) * $photos->perPage() + 1) + (count($photos) -1)  }}件のデータが表示されています。</p>
+            {{ $photos->links('vendor.pagination.default') }}
+            <div class="grid-cols-3 p-10 space-y-2 bg-white lg:space-y-0 lg:grid lg:gap-3 lg:grid-rows-3">
+                @foreach ($photos as $photo)
+                <a href="{{ route('users.showDetail', ['user' => $photo->user->name, 'photo' => $photo->id]) }}">
+                    <div class="w-full rounded">
+                        <img src="{{ url('static/post_images/'.$photo->image_path) }}" alt="{{ $photo->title }}">
+                    </div>
+                </a>
+                @endforeach
+            </div>
+            {{ $photos->links('vendor.pagination.default') }}
         </div>
     </div>
 
