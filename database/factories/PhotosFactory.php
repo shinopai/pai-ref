@@ -3,6 +3,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Photo;
+use App\User;
+use App\Category;
+use App\Location;
 use Faker\Generator as Faker;
 
 $factory->define(Photo::class, function (Faker $faker) {
@@ -21,8 +24,8 @@ $factory->define(Photo::class, function (Faker $faker) {
         'title' => substr($faker->unique()->name(), 0, rand(5, 30)),
         'image_path' => $arr[rand(0, 7)],
         'caption' => $faker->sentence,
-        'user_id' => rand(2, 201),
-        'category_id' => rand(1, 13),
-        'location_id' => rand(1, 47)
+        'user_id' => rand(2, User::count()),
+        'category_id' => rand(1, Category::count()),
+        'location_id' => rand(1, Location::count())
     ];
 });
