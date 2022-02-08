@@ -17,7 +17,7 @@ class LikesController extends Controller
     }
 
     public function likePhoto(User $user, Photo $photo){
-        $user_id = User::where('name', 'shinopai')->value('id');
+        $user_id = User::where('name', $user->name)->value('id');
 
         Like::create([
             'user_id' => $user_id,
