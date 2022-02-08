@@ -12,6 +12,6 @@ class PhotosTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Photo::class, 1000)->create();
+        factory(Photo::class, 3000)->create();
     }
 }
