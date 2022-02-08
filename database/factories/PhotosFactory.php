@@ -21,11 +21,11 @@ $factory->define(Photo::class, function (Faker $faker) {
     ];
 
     return [
-        'title' => substr($faker->unique()->name(), 0, rand(5, 30)),
-        'image_path' => $arr[rand(0, 7)],
+        'title' => substr($faker->unique()->name(), 0, mt_rand(5, 30)),
+        'image_path' => $arr[mt_rand(0, 7)],
         'caption' => $faker->sentence,
         'user_id' => rand(2, User::count()),
-        'category_id' => rand(1, Category::count()),
-        'location_id' => rand(1, Location::count())
+        'category_id' => mt_rand(1, Category::count()),
+        'location_id' => mt_rand(1, Location::count())
     ];
 });
