@@ -26,14 +26,14 @@ class LikesController extends Controller
     }
 
     public function unlikePhoto(User $user, Photo $photo){
-        $user_id = User::where('name', 'shinopai')->value('id');
+        $user_id = User::where('name', $user->name)->value('id');
 
         $like = Like::where('user_id', $user_id)->where('photo_id', $photo->id)->first();
         $like->delete();
     }
 
     public function checkIsLiked(User $user, Photo $photo){
-        $user_id = User::where('name', 'shinopai')->value('id');
+        $user_id = User::where('name', $user->name)->value('id');
 
         $like = Like::where('user_id', $user_id)->where('photo_id', $photo->id)->get();
 
