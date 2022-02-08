@@ -24,8 +24,8 @@ $factory->define(Photo::class, function (Faker $faker) {
         'title' => substr($faker->unique()->name(), 0, mt_rand(5, 30)),
         'image_path' => $arr[rand(0, 7)],
         'caption' => $faker->sentence,
-        'user_id' => mt_rand(1, 101),
-        'category_id' => mt_rand(1, 13),
-        'location_id' => mt_rand(1, 47)
+        'user_id' => mt_rand(1, User::count()),
+        'category_id' => mt_rand(1, Category::count()),
+        'location_id' => mt_rand(1, Location::count())
     ];
 });
